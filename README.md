@@ -37,8 +37,8 @@ Esta é uma API RESTful para gerenciamento de um hotel, desenvolvida como soluç
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <url-do-seu-repositorio>
-    cd <nome-do-projeto>
+    git clone  https://bitbucket.org/gaelcoder/javaestagiariogabriellima.git
+    cd ohoteleclipse
     ```
 
 2.  **Execute a aplicação usando o Maven:**
