@@ -1,0 +1,21 @@
+# Arquivos de Log
+*.log
+
+# Pasta de Build do Maven
+/target/
+
+# Arquivos do db
+/h2db/
+*.mv.db
+*.trace.db
+
+# Arquivos de configuração de IDEs
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# Arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
