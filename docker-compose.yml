@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: ohoteleclipse-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/app/src
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - db
+
+  # Serviço do Banco de Dados PostgreSQL
+  db:
+    image: postgres:13
+    container_name: ohoteleclipse-db
+    environment:
+      - POSTGRES_DB=hoteleclipse
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
