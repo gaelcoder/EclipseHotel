@@ -79,12 +79,12 @@ Esta abordagem irá configurar e executar a aplicação e o banco de dados Postg
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://bitbucket.org/gaelcoder/javaestagiariogabriellima.git
+    git clone https://github.com/gaelcoder/EclipseHotel
     ```
 
 2.  **Navegue até a pasta do projeto:**
     ```bash
-    cd ohoteleclipse
+    cd EclipseHotel
     ```
 
 3.  **Construa e inicie os contêineres:**
@@ -111,8 +111,8 @@ Esta abordagem executará a aplicação diretamente na sua máquina, utilizando 
 
 1.  **Clone o repositório e entre na pasta:**
     ```bash
-    git clone https://bitbucket.org/gaelcoder/javaestagiariogabriellima.git
-    cd ohoteleclipse
+    git clone https://github.com/gaelcoder/EclipseHotel
+    cd EclipseHotel
     ```
 
 2.  **Execute a aplicação:**
