@@ -1,144 +1,299 @@
-# Eclipse Hotel: Desafio de Desenvolvimento com Spring Boot
+# Eclipse Hotel: Spring Boot REST API
 
-Esta é uma API RESTful para gerenciamento de um hotel, desenvolvida como solução para um desafio de desenvolvimento back-end. O sistema permite gerenciar clientes, quartos e reservas, seguindo as melhores práticas de desenvolvimento com Spring Boot.
+Eclipse Hotel is a RESTful backend application developed as a technical challenge during a backend development process.
 
-Este projeto está totalmente containerizado usando Docker e Docker Compose, garantindo um ambiente de desenvolvimento consistente, persistente e de fácil configuração.
+The project focuses on building a well-structured hotel management system using Spring Boot, applying good software engineering practices such as domain separation, validation, testing, API documentation and containerized environments.
 
----
+Although the project does not aim to replicate a complete enterprise hotel platform, it represents an important step in understanding how real backend systems organize business rules, data relationships and application architecture.
 
-## ✨ Features
-
-*   **Gerenciamento de Clientes (CRUD):** Operações completas para criar, ler, atualizar e deletar clientes.
-*   **Gerenciamento de Quartos (CRUD):** Operações completas para criar, ler, atualizar e deletar quartos.
-*   **Sistema de Reservas:**
-    *   Criação de novas reservas com validação de disponibilidade.
-    *   Cancelamento e finalização de reservas.
-    *   Consulta de reservas por intervalo de datas.
-    *   Visualização dos quartos que estão ocupados no momento.
-*   **Integração com ViaCEP:** Busca automática de endereço a partir do CEP durante a criação ou atualização de um cliente.
-*   **Cache:** Implementação de cache com TTL de 30 segundos nas principais consultas para otimizar a performance.
-*   **Logs:** Logs detalhados em todas as operações para facilitar o troubleshooting.
-*   **Testes Unitários:** Cobertura de testes para a camada de serviço, garantindo a lógica de negócio.
-*   **Documentação da API:** Documentação interativa disponível via Swagger (OpenAPI).
+The entire environment can be executed using Docker Compose, providing a consistent and reproducible development setup.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+# ✨ Features
 
-*   **Backend:** Java 21, Spring Boot 3, Spring Data JPA
-*   **Banco de Dados:** PostgreSQL 13 (para Docker) e H2 (para execução local)
-*   **Documentação da API:** SpringDoc OpenAPI (Swagger)
-*   **Ambiente:** Docker & Docker Compose
-*   **Build e Dependências:** Maven
-*   **Testes:** JUnit 5 & Mockito
-*   **Utilitários:** Lombok
+## 👥 Customer Management
+
+Complete customer management with CRUD operations.
+
+Features:
+
+- Customer creation
+- Customer information update
+- Customer lookup
+- Customer deletion with reservation validation
+- Automatic address retrieval through ViaCEP integration
+
+
+## 🏨 Room Management
+
+Responsible for managing hotel rooms.
+
+Features:
+
+- Room creation
+- Room update
+- Room lookup
+- Room availability search
+- Current occupied rooms visualization
+- Room deletion validation
+
+
+## 📅 Reservation System
+
+Core business domain of the application.
+
+Features:
+
+- Reservation creation
+- Availability validation before booking
+- Reservation cancellation
+- Reservation completion
+- Reservation filtering by date range
+- Current room occupancy management
+
+
+## ⚡ Performance and Reliability
+
+The project also explores backend improvements beyond basic CRUD operations.
+
+Features:
+
+- Query caching with TTL configuration
+- Detailed application logging
+- Unit testing for business logic
+- API documentation through Swagger/OpenAPI
 
 ---
 
-## Endpoints da API
+# 🏗️ Architecture and Development Focus
 
-Abaixo estão os principais endpoints disponíveis na aplicação. Para mais detalhes e para interagir com a API, acesse a [Documentação do Swagger](http://localhost:8080/swagger-ui.html).
+The main challenge of Eclipse Hotel was organizing the application properly while dealing with real business rules.
 
-| Verbo HTTP | Endpoint | Descrição |
-| :--- | :--- | :--- |
-| **Clientes** |
-| `GET` | `/customers` | Lista todos os clientes. |
-| `GET` | `/customers/{id}` | Busca um cliente específico pelo ID. |
-| `POST` | `/customers` | Cria um novo cliente. |
-| `PUT` | `/customers/{id}` | Atualiza os dados de um cliente existente. |
-| `DELETE` | `/customers/{id}` | Remove um cliente (se não tiver reservas). |
-| **Quartos** |
-| `GET` | `/rooms` | Lista todos os quartos. |
-| `GET` | `/rooms/available`| Lista quartos disponíveis para um período (requer `checkin` e `checkout` como parâmetros). |
-| `GET` | `/rooms/occupied`| Lista quartos ocupados no momento. |
-| `GET` | `/rooms/{id}` | Busca um quarto específico pelo ID. |
-| `POST` | `/rooms` | Adiciona um novo quarto ao hotel. |
-| `PUT` | `/rooms/{id}` | Atualiza os dados de um quarto existente. |
-| `DELETE` | `/rooms/{id}` | Remove um quarto (se não tiver reservas). |
-| **Reservas** |
-| `GET` | `/reservations` | Lista todas as reservas (pode ser filtrada por datas `checkin` e `checkout`). |
-| `GET` | `/reservations/{id}` | Busca uma reserva específica pelo ID. |
-| `POST` | `/reservations` | Cria uma nova reserva para um cliente em um quarto. |
-| `PATCH` | `/reservations/{id}/cancel` | Cancela uma reserva com status `SCHEDULED`. |
+The project focuses on:
+
+- Clear separation between controllers, services and repositories
+- Proper domain modeling
+- Business validation
+- Entity relationships
+- Maintainable REST API design
+- Automated testing of service layers
+
+The goal was not only to make the API work, but to understand how backend applications should be structured to remain maintainable.
 
 ---
 
-## ⚙️ Como Executar o Projeto
+# 🚀 Technologies Used
 
-Você pode executar o projeto de duas maneiras. O método com Docker é o mais recomendado.
+## Backend
 
-### Método 1: Com Docker (Recomendado)
+- Java 21
+- Spring Boot 3
+- Spring MVC
+- Spring Data JPA
+- Lombok
 
-Esta abordagem irá configurar e executar a aplicação e o banco de dados PostgreSQL em contêineres isolados.
 
-**Pré-requisitos:**
-*   [Docker](https://www.docker.com/get-started)
-*   [Docker Compose](https://docs.docker.com/compose/install/)
+## Databases
 
-**Passos:**
+- PostgreSQL 13 (Docker environment)
+- H2 Database (local development)
 
-1.  **Clone o repositório:**
-    ```bash
+
+## API Documentation
+
+- SpringDoc OpenAPI
+- Swagger UI
+
+
+## Infrastructure
+
+- Docker
+- Docker Compose
+
+
+## Build and Dependencies
+
+- Maven
+
+
+## Testing
+
+- JUnit 5
+- Mockito
+
+---
+
+# 📡 API Overview
+
+The API exposes REST endpoints for managing customers, rooms and reservations.
+
+Main resources:
+
+## Customers
+
+    GET     /customers
+    GET     /customers/{id}
+    POST    /customers
+    PUT     /customers/{id}
+    DELETE  /customers/{id}
+
+
+## Rooms
+
+    GET     /rooms
+    GET     /rooms/{id}
+    GET     /rooms/available
+    GET     /rooms/occupied
+    POST    /rooms
+    PUT     /rooms/{id}
+    DELETE  /rooms/{id}
+
+
+## Reservations
+
+    GET     /reservations
+    GET     /reservations/{id}
+    POST    /reservations
+    PATCH   /reservations/{id}/cancel
+
+
+Full API documentation is available through Swagger.
+
+---
+
+# 🐳 Running Locally
+
+## Requirements
+
+- Java 21+
+- Docker
+- Docker Compose
+- Maven
+
+
+---
+
+## Running with Docker (Recommended)
+
+Clone the repository:
+
     git clone https://github.com/gaelcoder/EclipseHotel
-    ```
 
-2.  **Navegue até a pasta do projeto:**
-    ```bash
+
+Navigate to the project:
+
     cd EclipseHotel
-    ```
 
-3.  **Construa e inicie os contêineres:**
-    ```bash
+
+Start the application:
+
     docker-compose up --build
-    ```
-    Este comando irá construir a imagem da aplicação, baixar a imagem do PostgreSQL e iniciar ambos os serviços. Os dados do banco serão persistidos em um volume Docker.
 
-4.  **Acesse a aplicação:**
-    *   **API Base:** [http://localhost:8080/](http://localhost:8080/)
-    *   **Documentação da API (Swagger):** [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+This will:
+
+- Build the application container
+- Start PostgreSQL
+- Configure the database environment
+- Persist database data through Docker volumes
+
+
+Access:
+
+API:
+
+    http://localhost:8080/
+
+
+Swagger Documentation:
+
+    http://localhost:8080/swagger-ui.html
+
 
 ---
 
-### Método 2: Localmente com Maven
+## Running Locally with Maven
 
-Esta abordagem executará a aplicação diretamente na sua máquina, utilizando um banco de dados em memória (H2), o que significa que os dados serão perdidos a cada reinicialização.
+Clone the repository:
 
-**Pré-requisitos:**
-*   JDK 21 ou superior.
-*   Apache Maven 3.6 ou superior.
-
-**Passos:**
-
-1.  **Clone o repositório e entre na pasta:**
-    ```bash
     git clone https://github.com/gaelcoder/EclipseHotel
+
+Navigate to the folder:
+
     cd EclipseHotel
-    ```
 
-2.  **Execute a aplicação:**
-    ```bash
+
+Run:
+
     mvn spring-boot:run
-    ```
 
-3.  **Acesse a aplicação:**
-    *   **API:** [http://localhost:8080/](http://localhost:8080/)
-    *   **Console do Banco H2:** [http://localhost:8080/h2-console](http://localhost:8080/h2-console) (Use o JDBC URL `jdbc:h2:mem:testdb`)
+
+The application will use H2 as an in-memory database.
+
+Access:
+
+API:
+
+    http://localhost:8080/
+
+
+H2 Console:
+
+    http://localhost:8080/h2-console
+
+
+JDBC URL:
+
+    jdbc:h2:mem:testdb
+
 
 ---
 
-## 🧪 Como Executar os Testes
+# 🧪 Running Tests
 
-Para rodar a suíte de testes unitários e garantir que toda a lógica de negócio está funcionando como esperado, utilize o comando:
+Execute:
 
-```bash
-mvn clean test
-```
+    mvn clean test
+
+
+The project includes unit tests focused on service-layer business rules.
 
 ---
 
-## 👨‍💻 Autor
+# 💡 Development Experience
 
-Projeto desenvolvido por **Gabriel Lima de Souza Azevedo**.
+Building Eclipse Hotel was an important step in my backend journey.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gabrielsaz/)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gaelcoder)
+Although I had already worked with Spring Boot before, this project introduced new challenges: a shorter development deadline, stricter evaluation requirements and the need to implement concepts I had not deeply explored before, such as caching and more extensive unit testing.
+
+It provided a more realistic view of how production-oriented APIs need to be designed, especially regarding organization, maintainability and reliability.
+
+---
+
+# 🏁 Main Concepts Explored
+
+Through Eclipse Hotel, the main concepts explored were:
+
+- RESTful API design
+- Backend architecture organization
+- Business rule modeling
+- Database relationships
+- External API integration
+- Data validation
+- Caching strategies
+- Automated testing
+- Containerized development environments
+
+
+---
+
+# 👨‍💻 Author
+
+Gabriel Azevedo
+
+GitHub:
+https://github.com/gaelcoder
+
+LinkedIn:
+https://www.linkedin.com/in/gabrielsaz/
